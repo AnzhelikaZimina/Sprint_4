@@ -10,14 +10,14 @@ public class ScooterPage {
 
     //Кнопка заказать верхняя
     //.//button[@class='Button_Button__ra12g']
-    private By HeaderButton = By.className("Button_Button__ra12g");
+    private By headerButton = By.className("Button_Button__ra12g");
 
     public ScooterPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void clickHeaderOrderButton() {
-        driver.findElement(HeaderButton).click();
+        driver.findElement(headerButton).click();
     }
 
     WebDriver getDriver() {

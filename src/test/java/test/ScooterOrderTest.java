@@ -1,22 +1,16 @@
-import org.junit.Assert;
+package test;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobjects.HomePage;
+import pageobjects.RentPage;
+import pageobjects.WhoIsScooterForPage;
 import pageobjects.ScooterPage;
-import pageobjects.PageRent;
-import pageobjects.PageWhoIsScooterFor;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-import javax.swing.*;
-import java.time.Duration;
-import static java.time.Duration.ofSeconds;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
@@ -59,29 +53,29 @@ public class ScooterOrderTest extends ScooterTest {
     @Test
     public void orderScooter() {
         //Главная страница
-        ScooterPage Obj1 = new ScooterPage(getDriver());
-        PageWhoIsScooterFor Obj2 = new PageWhoIsScooterFor(getDriver());
-        Obj1.clickHeaderOrderButton();
-        Obj2.waitForLoadPageWhoIsScooterFor();
+        ScooterPage scooterPage = new ScooterPage(getDriver());
+        WhoIsScooterForPage whoIsScooterForPage = new WhoIsScooterForPage(getDriver());
+        scooterPage.clickHeaderOrderButton();
+        whoIsScooterForPage.waitForLoadPageWhoIsScooterFor();
         //Страница для кого самокат
-        PageRent Obj3 = new PageRent(getDriver());
-        Obj2.setFirstName(name);
-        Obj2.setLastName(surname);
-        Obj2.setAddress(address);
-        Obj2.selectMetroStation(metro);
-        Obj2.setPhone(phone);
-        Obj2.pageWhoIsScooterForClickButton();
-        Obj3.waitForLoadPageRent();
+        RentPage rentPage = new RentPage(getDriver());
+        whoIsScooterForPage.setFirstName(name);
+        whoIsScooterForPage.setLastName(surname);
+        whoIsScooterForPage.setAddress(address);
+        whoIsScooterForPage.selectMetroStation(metro);
+        whoIsScooterForPage.setPhone(phone);
+        whoIsScooterForPage.pageWhoIsScooterForClickButton();
+        rentPage.waitForLoad();
         //Страница деталей аренды
-        Obj3.setDeliveryDate(deliveryDate);
-        Obj3.clickSelectedDeliveryDate();
-        Obj3.selectRentalPeriod(rentalPeriod);
-        Obj3.clickColorCheckbox();
-        Obj3.setComment(comment);
-        Obj3.clickButtonOrder();
+        rentPage.setDeliveryDate(deliveryDate);
+        rentPage.clickSelectedDeliveryDate();
+        rentPage.selectRentalPeriod(rentalPeriod);
+        rentPage.clickColorCheckbox();
+        rentPage.setComment(comment);
+        rentPage.clickOrderButton();
         //Окно подтверждения заказа
-        Obj3.waitForLoadOrderConfirmForm();
-        Obj3.clickYesButton();
+        rentPage.waitForLoadOrderConfirmForm();
+        rentPage.clickYesButton();
         WebElement element  = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Посмотреть статус']")));
         assertTrue("Окно подтверждения не открылось", element.isDisplayed());

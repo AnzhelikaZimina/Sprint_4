@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.Assert.assertTrue;
-
-public class PageWhoIsScooterFor extends ScooterPage {
+public class WhoIsScooterForPage extends ScooterPage {
     //Поле ввода имени
     //.//input[@placeholder='* Имя']
     private By firstNameInput = By.xpath(".//input[@placeholder='* Имя']");
@@ -32,7 +30,7 @@ public class PageWhoIsScooterFor extends ScooterPage {
     //.//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']
     private By buttonNext = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
-    public PageWhoIsScooterFor(WebDriver driver) {
+    public WhoIsScooterForPage(WebDriver driver) {
         super(driver);
     }
 

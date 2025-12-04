@@ -1,3 +1,5 @@
+package test;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
@@ -18,14 +20,14 @@ public abstract class ScooterTest {
         return new ChromeDriver();
     }
 
-    WebDriver getDriver() {
+    protected WebDriver getDriver() {
         return driver;
     }
 
     @After
     public void teardown() {
         if (getDriver() != null) {
-            //driver.quit();
+            driver.quit();
         }
     }
 

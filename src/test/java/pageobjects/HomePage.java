@@ -1,4 +1,5 @@
 package pageobjects;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,8 +8,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends ScooterPage {
+    //Блок вопроса и ответа
+    //.//div[@class='accordion__item' and .//div[@class='accordion__button' and text() = '%s']]
     private String accordionItem = ".//div[@class='accordion__item' and .//div[@class='accordion__button' and text() = '%s']]";
+    //Вопрос в блоке вопроса и ответа
+    //.//div[@class='accordion__button']
     private By question = By.className("accordion__button");
+    //Ответ в блоке вопроса и ответа
+    //.//div[@class='accordion__panel']
     private By answer = By.className("accordion__panel");
     //Кнопка заказать нижняя
     //.//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']

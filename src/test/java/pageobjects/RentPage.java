@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageRent extends ScooterPage {
+public class RentPage extends ScooterPage {
     //Поле ввода когда привезти самокат
     //.//input[@placeholder='* Когда привезти самокат']
     private By deliveryDateInput = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
@@ -28,12 +28,12 @@ public class PageRent extends ScooterPage {
     private By commentInput = By.xpath(".//input[@placeholder='Комментарий для курьера']");
     //Кнопка Заказать
     //.//button[@class='Button_Button__ra12g Button_Middle__1CSJM']
-    private By buttonOrder = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Заказать']");
+    private By orderButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Заказать']");
     //Кнопка "Да"
     //.//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Да']
     private By yesButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Да']");
 
-    public PageRent(WebDriver driver) {
+    public RentPage(WebDriver driver) {
         super(driver);
     }
 
@@ -61,11 +61,11 @@ public class PageRent extends ScooterPage {
         getDriver().findElement(commentInput).sendKeys(comment);
     }
 
-    public void clickButtonOrder() {
-        getDriver().findElement(buttonOrder).click();
+    public void clickOrderButton() {
+        getDriver().findElement(orderButton).click();
     }
 
-    public void waitForLoadPageRent() {
+    public void waitForLoad() {
         new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(deliveryDateInput));
     }
