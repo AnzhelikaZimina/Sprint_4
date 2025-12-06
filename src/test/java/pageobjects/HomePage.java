@@ -7,6 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class HomePage extends ScooterPage {
     //Блок вопроса и ответа
     //.//div[@class='accordion__item' and .//div[@class='accordion__button' and text() = '%s']]
@@ -19,7 +22,7 @@ public class HomePage extends ScooterPage {
     private By answer = By.className("accordion__panel");
     //Кнопка заказать нижняя
     //.//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']
-    private By bottomButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
+    private By bottomButton = By.xpath(".//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']");
     //Выпадающий список в разделе вопросы о важном
     //.//div[@class='accordion']
     private By questionList = By.className("accordion");
@@ -29,10 +32,9 @@ public class HomePage extends ScooterPage {
     }
 
     public void waitForLoadBottomButton() {
-        WebElement element = getDriver().findElement(By.id("root"));
-        new WebDriverWait(getDriver(), 5)
+        WebElement element = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(bottomButton));
-        ((JavascriptExecutor)getDriver()).executeScript("arguments[0].scrollIntoView(false);", element);
+        ((JavascriptExecutor)getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public void clickBottomOrderButton() {
@@ -46,10 +48,14 @@ public class HomePage extends ScooterPage {
         item.findElement(question).click();
     }
 
-    public WebElement getAnswerElement(String question) {
+    private WebElement getAnswerElement(String question) {
         WebElement accordion = getDriver().findElement(questionList);
         WebElement item = accordion.findElement(By.xpath(String.format(accordionItem, question)));
         return item.findElement(answer);
     }
 
+    public String getQuestionElement(String question) {
+        WebElement element = getAnswerElement(question);
+        return element.getText();
+    }
 }

@@ -50,6 +50,8 @@ public class WhoIsScooterForPage extends ScooterPage {
         new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(metroDropdown));
         By stationOption = By.xpath(String.format(metroStationOption, stationName));
+        new WebDriverWait(getDriver(), 5)
+                .until(ExpectedConditions.visibilityOfElementLocated(stationOption));
         getDriver().findElement(stationOption).click();
     }
 

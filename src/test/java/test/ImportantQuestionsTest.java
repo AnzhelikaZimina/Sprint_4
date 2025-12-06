@@ -3,14 +3,13 @@ package test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebElement;
 import pageobjects.HomePage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class ImportantQuestionsTest extends ScooterTest {
+public class ImportantQuestionsTest extends BaseTest {
     private final String question;
     private final String answer;
 
@@ -19,7 +18,7 @@ public class ImportantQuestionsTest extends ScooterTest {
         this.answer = answer;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Object[][] getQuestionsAndAnswers() {
         return new Object[][]{
                 {"Сколько это стоит? И как оплатить?", "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
@@ -37,8 +36,6 @@ public class ImportantQuestionsTest extends ScooterTest {
     public void shouldTestQuestionAndAnswer() {
         HomePage page = new HomePage(getDriver());
         page.clickAccordionButton(question);
-        WebElement element = page.getAnswerElement(question);
-        assertEquals(answer, element.getText());
-        assertTrue(element.isDisplayed());
+        assertEquals(answer, page.getQuestionElement(question));
     }
 }

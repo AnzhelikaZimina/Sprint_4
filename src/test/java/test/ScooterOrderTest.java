@@ -14,7 +14,7 @@ import pageobjects.ScooterPage;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class ScooterOrderTest extends ScooterTest {
+public class ScooterOrderTest extends BaseTest {
     private final String name;
     private final String surname;
     private final String address;

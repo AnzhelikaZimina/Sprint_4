@@ -7,7 +7,7 @@ import pageobjects.ScooterPage;
 
 import static org.junit.Assert.assertTrue;
 
-public class OrderButtonsTest extends ScooterTest {
+public class OrderButtonsTest extends BaseTest {
 
     @Test
     public void orderHeaderButton() {
