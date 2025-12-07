@@ -6,7 +6,6 @@ import org.junit.runners.Parameterized;
 import pageobjects.HomePage;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class ImportantQuestionsTest extends BaseTest {

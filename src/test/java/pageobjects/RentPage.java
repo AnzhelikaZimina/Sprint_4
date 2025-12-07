@@ -2,6 +2,7 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -77,5 +78,18 @@ public class RentPage extends ScooterPage {
 
     public void clickYesButton() {
         getDriver().findElement(yesButton).click();
+    }
+
+    public void waitForLoadStatus() {
+        waitForStatusElement();
+    }
+
+    private WebElement waitForStatusElement() {
+        return new WebDriverWait(getDriver(), 5)
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Посмотреть статус']")));
+    }
+
+    public boolean isOrderStatusVisible() {
+        return waitForStatusElement().isDisplayed();
     }
 }

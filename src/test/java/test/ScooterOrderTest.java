@@ -3,10 +3,6 @@ package test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.RentPage;
 import pageobjects.WhoIsScooterForPage;
 import pageobjects.ScooterPage;
@@ -76,8 +72,7 @@ public class ScooterOrderTest extends BaseTest {
         //Окно подтверждения заказа
         rentPage.waitForLoadOrderConfirmForm();
         rentPage.clickYesButton();
-        WebElement element  = new WebDriverWait(getDriver(), 5)
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Посмотреть статус']")));
-        assertTrue("Окно подтверждения не открылось", element.isDisplayed());
+        rentPage.waitForLoadStatus();
+        assertTrue("Окно подтверждения не открылось", rentPage.isOrderStatusVisible());
     }
 }
